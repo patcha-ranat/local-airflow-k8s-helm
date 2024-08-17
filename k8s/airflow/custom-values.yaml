@@ -1,0 +1,60 @@
+
+statsd:
+  enabled: false
+
+triggerer:
+  enabled: false
+
+airflow:
+  config:
+    AIRFLOW__CORE__DAGS_FOLDER: ../../airflow/dags
+    load_examples: 'True'
+
+# config:
+#   core:
+#     # dags_folder: /Users/patcharanat.pa/td88/free-project-workspace/airflow/dags
+#     load_examples: 'True'
+
+executor: "LocalExecutor"
+
+# persistence:
+#   enabled: true
+#   existingClaim: airflow-pvc
+
+# dags:
+#   persistence:
+#     enabled: true
+#     existingClaim: airflow-dags-pvc
+
+# logs:
+#   persistence:
+#     enabled: true
+#     existingClaim: airflow-logs-pvc
+
+# web:
+#   extraVolumeMounts:
+#     - name: dags
+#       mountPath: /opt/airflow/dags
+
+# scheduler:
+#   extraVolumes:
+#     - name: dags
+#       hostPath:
+#         path: "/Users/patcharanat.pa/td88/free-project-workspace/airflow/dags"
+#         type: Directory
+#   extraVolumeMounts:
+#     - name: dags
+#       mountPath: /opt/airflow/dags
+
+# extraVolumes:
+#   - name: dags
+#     persistentVolumeClaim:
+#       claimName: airflow-dags-pvc
+
+# extraVolume:
+#   - name: airflow-volume
+#     mounthPath: ./airflow/dags
+
+# extraVolumeMounts:
+#   - name: airflow-volume
+#     mounthPath: ./airflow/dags
