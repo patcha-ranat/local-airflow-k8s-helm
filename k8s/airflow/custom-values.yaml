@@ -1,60 +1,39 @@
 
-statsd:
+
+executor: KubernetesExecutor
+
+redis:
   enabled: false
 
-triggerer:
-  enabled: false
+dags:
+  persistence:
+    enabled: true
+    existingClaim: airflow-dags
+    storageClassName: local-storage
+logs:
+  persistence:
+    enabled: true
+    existingClaim: airflow-logs
+    storageClassName: local-storage
 
-airflow:
-  config:
-    AIRFLOW__CORE__DAGS_FOLDER: ../../airflow/dags
-    load_examples: 'True'
+# Default airflow tag to deploy
+defaultAirflowTag: "2.10.4"
 
-# config:
-#   core:
-#     # dags_folder: /Users/patcharanat.pa/td88/free-project-workspace/airflow/dags
-#     load_examples: 'True'
+# Airflow version (Used to make some decisions based on Airflow Version being deployed)
+airflowVersion: "2.10.4"
 
-executor: "LocalExecutor"
+webserverSecretKeySecretName: airflow-webserver-secret-key
 
-# persistence:
-#   enabled: true
-#   existingClaim: airflow-pvc
+extraEnv: |
+  - name: AIRFLOW__CORE__LOAD_EXAMPLES
+    value: 'True'
 
-# dags:
-#   persistence:
-#     enabled: true
-#     existingClaim: airflow-dags-pvc
-
-# logs:
-#   persistence:
-#     enabled: true
-#     existingClaim: airflow-logs-pvc
-
-# web:
-#   extraVolumeMounts:
-#     - name: dags
-#       mountPath: /opt/airflow/dags
-
-# scheduler:
-#   extraVolumes:
-#     - name: dags
-#       hostPath:
-#         path: "/Users/patcharanat.pa/td88/free-project-workspace/airflow/dags"
-#         type: Directory
-#   extraVolumeMounts:
-#     - name: dags
-#       mountPath: /opt/airflow/dags
-
-# extraVolumes:
-#   - name: dags
-#     persistentVolumeClaim:
-#       claimName: airflow-dags-pvc
-
-# extraVolume:
-#   - name: airflow-volume
-#     mounthPath: ./airflow/dags
-
-# extraVolumeMounts:
-#   - name: airflow-volume
-#     mounthPath: ./airflow/dags
+# Extra envFrom 'items' that will be added to the definition of airflow containers
+# A string is expected (can be templated).
+extraEnvFrom: ~
+# eg:
+# extraEnvFrom: |
+#   - secretRef:
+#       name: '{{ .Release.Name }}-airflow-connections'
+#   - configMapRef:
+#       name: '{{ .Release.Name }}-airflow-variables'
