@@ -1,2 +1,9 @@
+# environment
 pyenv
-charts
+__pycache__
+
+# utils
+_*.sh
+
+# unnecessary
+logs

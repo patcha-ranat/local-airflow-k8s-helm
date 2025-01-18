@@ -4,13 +4,13 @@ metadata:
   name: airflow-dags
   namespace: airflow
 spec:
-  storageClassName: standard
+  storageClassName: local-storage
   capacity:
     storage: 2Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "airflow/dags"
+  hostPath: # dags folder on cluster (mounted dags folder in minikube not in local machine)
+    path: "/mnt/airflow/dags"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -18,10 +18,10 @@ metadata:
   name: airflow-logs
   namespace: airflow
 spec:
-  storageClassName: standard
+  storageClassName: local-storage
   capacity:
     storage: 2Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "airflow/logs"
+    path: "/mnt/airflow/logs"

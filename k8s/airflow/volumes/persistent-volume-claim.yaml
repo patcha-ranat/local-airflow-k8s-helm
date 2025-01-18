@@ -4,7 +4,7 @@ metadata:
   name: airflow-dags
   namespace: airflow
 spec:
-  storageClassName: standard
+  storageClassName: local-storage
   accessModes:
     - ReadWriteOnce
   resources:
@@ -17,7 +17,7 @@ metadata:
   name: airflow-logs
   namespace: airflow
 spec:
-  storageClassName: standard
+  storageClassName: local-storage
   accessModes:
     - ReadWriteOnce
   resources:

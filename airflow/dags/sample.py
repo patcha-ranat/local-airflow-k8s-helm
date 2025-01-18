@@ -8,22 +8,36 @@
 """
 import datetime
 
-from airflow import DAG
-from airfow.operators.empty import EmptyOperator
+from airflow.models import DAG
+from airflow.operators.empty import EmptyOperator
 
+
+DAG_ID = "my_dag_name"
 
 default_config = {}
 
-default_args = {}
-
+# Airflow DAG
+default_dag_args = {
+    "owner": "kde",
+    "email": "kde@kde.com",
+    "doc_md": __doc__,
+    "default_view": "grid",
+    "retries": 2,
+    "retry_delay": datetime.timedelta(minutes=5),
+    "depends_on_past": False
+}
+    
 with DAG(
-    dag_id="my_dag_name",
-    start_date=datetime.datetime(2024, 6, 1),
+    dag_id=DAG_ID,
+    start_date=datetime.datetime(2025, 1, 15),
     schedule="0 1 * * *",
+    catchup=False,
+    default_args=default_dag_args,
+    tags=["de"]
 ) as dag:
     
-    start_task = EmptyOperator()
+    start_task = EmptyOperator(task_id="start")
 
-    end_task = EmptyOperator()
+    end_task = EmptyOperator(task_id="end")
 
     start_task >> end_task

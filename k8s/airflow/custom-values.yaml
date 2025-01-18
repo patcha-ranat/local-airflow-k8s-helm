@@ -1,4 +1,9 @@
 
+# Default airflow tag to deploy
+defaultAirflowTag: "2.10.4"
+
+# Airflow version (Used to make some decisions based on Airflow Version being deployed)
+airflowVersion: "2.10.4"
 
 executor: KubernetesExecutor
 
@@ -16,20 +21,45 @@ logs:
     existingClaim: airflow-logs
     storageClassName: local-storage
 
-# Default airflow tag to deploy
-defaultAirflowTag: "2.10.4"
-
-# Airflow version (Used to make some decisions based on Airflow Version being deployed)
-airflowVersion: "2.10.4"
+triggerer:
+  enabled: false
 
 webserverSecretKeySecretName: airflow-webserver-secret-key
 
+# webserver:
+#   startupProbe:
+#     timeoutSeconds: 60
+#   resources:
+#     limits:
+#       cpu: 500m
+#       memory: 2048Mi
+#     requests:
+#       cpu: 500m
+#       memory: 2048Mi
+#   defaultUser:
+#     enabled: true
+#     role: Admin
+#     username: admin
+#     password: admin
+#     email: admin@example.com
+#     firstName: admin
+#     lastName: user
+
+# scheduler:
+#   resources:
+#     limits:
+#       cpu: 500m
+#       memory: 2048Mi
+#     requests:
+#       cpu: 500m
+#       memory: 2048Mi
+
 extraEnv: |
   - name: AIRFLOW__CORE__LOAD_EXAMPLES
+    value: 'False'
+  - name: AIRFLOW__WEBSERVER__EXPOSE_CONFIG
     value: 'True'
 
-# Extra envFrom 'items' that will be added to the definition of airflow containers
-# A string is expected (can be templated).
 extraEnvFrom: ~
 # eg:
 # extraEnvFrom: |
