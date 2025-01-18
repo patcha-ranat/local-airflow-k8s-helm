@@ -4,7 +4,7 @@
 
 ## Introduction
 
-In this project, we will deploy airflow on Kubernetes (k8s) locally using minikube and helm chart provided officially by Airflow. Moreover, we will make our dags, which can be developed locally on your computer, to be available on deployed airflow scheduler and webserver in real-time by volume mount.
+In this project, we will deploy airflow on Kubernetes (k8s) locally using minikube and helm chart provided officially by Airflow. Moreover, we will make our dags, which can be developed locally on your computer, available on the deployed airflow scheduler and webserver in real-time by volume mount.
 
 ### What we are gonna do
 
@@ -19,7 +19,7 @@ I think this is the most easiest way to get used to k8s and starting point of ai
 
 ### Why we are gonna do
 
-What surprised me was that this topic could offer Data Engineer a good introduction for Data Platform aspect, but it was merely be able to find this information with proper explaination and clarified steps. There were scattered pieces of information unconnected and required a lot of adjustment to make the thing happen, so I decided to write this for my future self and someone who also want such information. 
+What surprised me was that this topic could offer Data Engineers a good introduction to the Data Platform aspect, but it was merely able to find this information with proper explanation and clarified steps. There were scattered pieces of information unconnected and required a lot of adjustment to make the thing happen, so I decided to write this for my future self and someone who also wants such information.
 
 *Don't worry if you are not familiar with kubernetes (k8s), this documentation will not dive into architecture aspect also.*
 
