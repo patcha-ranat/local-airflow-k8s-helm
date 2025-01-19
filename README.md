@@ -4,7 +4,7 @@
 
 ## Introduction
 
-In this project, we will deploy airflow on Kubernetes (k8s) locally using minikube and helm chart provided officially by Airflow. Moreover, we will make our dags, which can be developed locally on your computer, available on the deployed airflow scheduler and webserver in real-time by volume mount.
+This project focuses on deploying Apache Airflow on a local Kubernetes (K8s) environment using Minikube and the official Airflow Helm chart. Additionally, it ensures that DAGs, developed locally on your computer, are accessible to the deployed Airflow scheduler and webserver in real-time through volume mounting, utilizing persistent storage using Kubernetes Persistent Volumes (PV) and Persistent Volume Claims (PVC).
 
 ### What we are gonna do
 
