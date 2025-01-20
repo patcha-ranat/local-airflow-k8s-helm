@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This project focuses on deploying Apache Airflow on a local Kubernetes (K8s) environment using Minikube and the official Airflow Helm chart. Additionally, it ensures that DAGs, developed locally on your computer, are accessible to the deployed Airflow scheduler and webserver in real-time through volume mounting, utilizing persistent storage using Kubernetes Persistent Volumes (PV) and Persistent Volume Claims (PVC).
+This project focuses on deploying Apache Airflow in a local Kubernetes (K8s) environment using Minikube and the official Airflow Helm chart. it also ensures that locally developed DAGs are accessible to the deployed Airflow scheduler and webserver in real-time through volume mounting, with persistent storage managed by Kubernetes Persistent Volumes (PV) and Persistent Volume Claims (PVC).
 
 ### What we are gonna do
 
@@ -19,7 +19,7 @@ I think this is the most easiest way to get used to k8s and starting point of ai
 
 ### Why we are gonna do
 
-What surprised me was that this topic could offer Data Engineers a good introduction to the Data Platform aspect, but it was merely able to find this information with proper explanation and clarified steps. There were scattered pieces of information unconnected and required a lot of adjustment to make the thing happen, so I decided to write this for my future self and someone who also wants such information.
+What surprised me was how difficult it was to find clear and comprehensive information on this topic, particularly regarding the volume setup, with proper explanations and detailed steps. There were scattered pieces of information unconnected and required significant adjustments to make the thing happen, despite this topic offering a great starting point for anyone to practice airflow deployment with production-like approaches. To bridge this gap, I decided to publish this guide.
 
 *Don't worry if you are not familiar with kubernetes (k8s), this documentation will not dive into architecture aspect also.*
 
