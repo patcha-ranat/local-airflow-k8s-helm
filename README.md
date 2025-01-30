@@ -34,6 +34,8 @@ For me, I used Windows Subsystem for Linux (WSL). Anything beyond this, you have
 
 ## Getting Started
 
+![overview](./docs/overview.png)
+
 ### Initialization
 ```bash
 # tools/setup-k8s.sh
@@ -74,8 +76,6 @@ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
 # Go to http://localhost:8080
 ```
 
-![overview](./docs/overview.png)
-
 ### Explanation
 
 1. Start k8s cluster locally
@@ -90,7 +90,7 @@ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
     - You can create secret by `kubectl` applying configuration file with secret kind: [airflow-secret.yaml](./k8s/airflow/secrets/airflow-secret.yaml)
 5. Create PV/PVC for dags and logs
     - Just like mounting volume in docker compose, k8s works in the same pattern but with different architecture and components by using "persistent volume" (PV) and "persistent volume claim" (PVC).
-    - **What important** in this pair configuration are `metadata.name`, `metadata.name`, `spec.*` must be associated between PV and PVC. And `spec.hostPath.path` in PV is referred to path in minikube cluster's directory, not directory in your local computer. So, if we want to mount "dags" and "logs" volume we need:
+    - **What important** in this pair configuration are `metadata.name`, `metadata.namespace`, `spec.*` must be associated between PV and PVC. And **`spec.hostPath.path` in PV is referred to path in minikube cluster's directory, not directory in your local computer**. So, if we want to mount "dags" and "logs" volume we need:
         - PV and PVC for dags folder
         - PV and PVC for logs folder
     - PV for both dags and logs is in [persistent-volume.yaml](./k8s/airflow/volumes/persistent-volume.yaml) and PVC for both is in [persistent-volume-claim.yaml](./k8s/airflow/volumes/persistent-volume-claim.yaml)
